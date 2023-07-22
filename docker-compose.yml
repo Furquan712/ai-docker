@@ -1,0 +1,27 @@
+version: "3"
+services:
+  # Backend service - Node.js and Express API
+  backend:
+    container_name: mern_backend
+    build:
+      context: ./server # Path to your backend directory
+      dockerfile: Dockerfile # Name of your Dockerfile for the backend
+    ports:
+      - "8080:8080" # Map the container's port 5000 to the host's port 5000
+    environment:
+      - OPENAI_API_KEY=OPENAI_API_KEY # Replace this 5 your actual OpenAI API key
+    
+
+  # Frontend service - React app
+  frontend:
+    container_name: mern_frontend
+    build:
+      context: ./client # Path to your frontend directory
+      dockerfile: Dockerfile # Name of your Dockerfile for the frontend
+    ports:
+      - "3000:3000" # Map the container's port 3000 to the host's port 3000
+    depends_on:
+      - backend
+
+  
+ 
